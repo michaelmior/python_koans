@@ -17,8 +17,23 @@
 #   about_triangle_project_2.py
 #
 def triangle(a, b, c):
-    # DELETE 'PASS' AND WRITE THIS CODE
-    pass
+    if a == 0 or b == 0 or c == 0:
+        raise TriangleError
+    if a < 1 or b < 1 or c < 1:
+        raise TriangleError
+
+    sides = [a, b, c]
+    max_side = max(sides)
+    sides.remove(max_side)
+    if sum(sides) <= max_side:
+        raise TriangleError
+
+    if a == b == c:
+        return 'equilateral'
+    if a != b and b != c and c != a:
+        return 'scalene'
+    else:
+        return 'isosceles'
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError(Exception):

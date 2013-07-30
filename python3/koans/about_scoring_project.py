@@ -34,7 +34,20 @@ from runner.koan import *
 
 def score(dice):
     # You need to write this method
-    pass
+    score = 0
+    dice.sort()
+    if len(dice) >= 3 and dice[0] == dice[1] == dice[2]:
+        if dice[1] == 1:
+            score += 1000
+        else:
+            score += 100 * dice[1]
+
+        dice = dice[3:]
+
+    score += len(list(filter(lambda x: x == 1, dice))) * 100
+    score += len(list(filter(lambda x: x == 5, dice))) * 50
+
+    return score
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
